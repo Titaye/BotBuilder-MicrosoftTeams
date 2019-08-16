@@ -36,6 +36,7 @@
 namespace Microsoft.Bot.Connector.Teams
 {
     using System.Collections.Generic;
+    using Microsoft.Bot.Schema;
     using Models;
 
     /// <summary>

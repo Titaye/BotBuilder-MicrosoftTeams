@@ -41,6 +41,7 @@ namespace Microsoft.Bot.Connector.Teams
     using System.Text;
     using System.Threading.Tasks;
     using Microsoft.Bot.Connector.Teams.Models;
+    using Microsoft.Bot.Schema;
     using Microsoft.Rest;
     using Newtonsoft.Json.Linq;
 
@@ -49,22 +50,22 @@ namespace Microsoft.Bot.Connector.Teams
     /// </summary>
     public static class ConversationExtensions
     {
-        /// <summary>
-        /// Gets teams conversation members asynchronously.
-        /// </summary>
-        /// <param name="conversations">Conversation instance.</param>
-        /// <param name="conversationId">Conversation Id.</param>
-        /// <param name="tenantId">Tenant Id for the conversation.</param>
-        /// <returns>List of members who are part of conversation.</returns>
-        [Obsolete("Use IConversations.GetConversationMembersAsync method instead. AsTeamsChannelAccount method can then be used to get extended properties.")]
-        public static async Task<TeamsChannelAccount[]> GetTeamsConversationMembersAsync(this IConversations conversations, string conversationId, string tenantId = null)
-        {
-            using (var memberList = await conversations.GetConversationMembersWithHttpMessagesAsync(conversationId).ConfigureAwait(false))
-            {
-                var members = await memberList.HandleErrorAsync<ChannelAccount[]>().ConfigureAwait(false);
-                return members.Select(member => member.AsTeamsChannelAccount()).ToArray();
-            }
-        }
+        ///// <summary>
+        ///// Gets teams conversation members asynchronously.
+        ///// </summary>
+        ///// <param name="conversations">Conversation instance.</param>
+        ///// <param name="conversationId">Conversation Id.</param>
+        ///// <param name="tenantId">Tenant Id for the conversation.</param>
+        ///// <returns>List of members who are part of conversation.</returns>
+        //[Obsolete("Use IConversations.GetConversationMembersAsync method instead. AsTeamsChannelAccount method can then be used to get extended properties.")]
+        //public static async Task<TeamsChannelAccount[]> GetTeamsConversationMembersAsync(this IConversations conversations, string conversationId, string tenantId = null)
+        //{
+        //    using (var memberList = await conversations.GetConversationMembersWithHttpMessagesAsync(conversationId).ConfigureAwait(false))
+        //    {
+        //        var members = await memberList.HandleErrorAsync<ChannelAccount[]>().ConfigureAwait(false);
+        //        return members.Select(member => member.AsTeamsChannelAccount()).ToArray();
+        //    }
+        //}
 
         /// <summary>
         /// Gets teams channel account data.

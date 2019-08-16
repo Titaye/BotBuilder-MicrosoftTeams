@@ -35,6 +35,7 @@
 
 namespace Microsoft.Bot.Connector.Teams
 {
+    using Microsoft.Bot.Schema;
     using Models;
 
     /// <summary>

@@ -4,6 +4,7 @@
 
 namespace Microsoft.Bot.Connector.Teams.Models
 {
+    using Microsoft.Bot.Schema;
     using System.Linq;
 
     /// <summary>

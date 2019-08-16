@@ -38,6 +38,7 @@ namespace Microsoft.Bot.Connector.Teams
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.Bot.Schema;
     using Models;
     using Newtonsoft.Json.Linq;
 

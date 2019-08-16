@@ -39,6 +39,7 @@ namespace Microsoft.Bot.Connector
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.Bot.Schema;
     using Microsoft.Rest;
     using Polly;
     using Polly.Retry;
@@ -178,7 +179,7 @@ namespace Microsoft.Bot.Connector
             string conversationId,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await ExecuteWithRetries(() => conversation.SendToConversationAsync(activity, conversationId, cancellationToken), conversation);
+            return await ExecuteWithRetries(() => conversation.SendToConversationAsync(conversationId, activity, cancellationToken), conversation);
         }
 
         /// <summary>

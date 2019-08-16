@@ -38,6 +38,7 @@ namespace Microsoft.Bot.Connector.Teams
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.Bot.Schema;
     using Models;
     using Newtonsoft.Json.Linq;
 
@@ -179,7 +180,7 @@ namespace Microsoft.Bot.Connector.Teams
         /// </exception>
         public static TeamEventBase GetConversationUpdateData(this IConversationUpdateActivity activity)
         {
-            if (activity.GetActivityType() != ActivityTypes.ConversationUpdate)
+            if (activity.Type /*GetActivityType()*/ != ActivityTypes.ConversationUpdate)
             {
                 throw new ArgumentException("activity must be a ConversationUpdate");
             }

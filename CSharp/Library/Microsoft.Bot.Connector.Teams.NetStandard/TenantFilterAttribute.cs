@@ -43,6 +43,7 @@ namespace Microsoft.Bot.Connector.Teams
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.Extensions.Configuration;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -52,6 +53,7 @@ namespace Microsoft.Bot.Connector.Teams
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class TenantFilterAttribute : ActionFilterAttribute
     {
+
         /// <summary>
         /// The tenant filtering instance.
         /// </summary>
@@ -65,24 +67,21 @@ namespace Microsoft.Bot.Connector.Teams
         /// or
         /// Failed to get list of allowed tenants. Ensure that configuration has AllowedTenants element with the comma separated list of tenant Ids. Tenant Ids must be Guid.
         /// </exception>
-        static TenantFilterAttribute()
+        public TenantFilterAttribute(IConfiguration configuration)
         {
-            if (!ServiceProvider.IsRegistered)
-            {
-                throw new Exception("Service provider registration is missing please use app.UseBotConnector in Startup.cs to register service");
-            }
-
-            try
-            {
-                tenantFiltering = new TenantFiltering(ServiceProvider.Instance.ConfigurationRoot["AllowedTenants"].Split(',').ToList());
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(
-                    "Failed to get list of allowed tenants. Ensure that configuration has AllowedTenants element with the comma separated list of tenant Ids. Tenant Ids must be Guid.",
-                    ex);
-            }
+            //try
+            //{
+            //    tenantFiltering = new TenantFiltering(allowedTenants);
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(
+            //        "Failed to get list of allowed tenants. Ensure that configuration has AllowedTenants element with the comma separated list of tenant Ids. Tenant Ids must be Guid.",
+            //        ex);
+            //}
         }
+
+        public bool IsReusable => true;
 
         /// <summary>
         /// Called when request is received.

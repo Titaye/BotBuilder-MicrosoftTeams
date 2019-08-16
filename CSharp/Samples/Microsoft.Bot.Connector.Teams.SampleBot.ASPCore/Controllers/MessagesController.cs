@@ -52,7 +52,7 @@ namespace Microsoft.Bot.Connector.Teams.SampleBot.ASPCore.Controllers
     /// Messaging controller.
     /// </summary>
     [Route("api/[controller]")]
-    [TenantFilter]
+    [TypeFilter(typeof(TenantFilterAttribute))]
     public class MessagesController : Controller
     {
         /// <summary>
